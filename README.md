@@ -50,22 +50,27 @@
 
 1. Клонируйте репозиторий:
 ```bash
-git clone git@github.com:NikAfraim/shops_mediasoft.git
+git clone https://github.com/MarkStranger1/SummerPractice.git
 ```
 
 2. Перейдите в каталог проекта:
 ```bash
-cd shops_mediasoft
+cd SummerPractice
 ```
 
 3. Создайте файл .env в `/infra`, используя шаблон `/infra/.env.example`.
 
-4. Создайте виртуальное окружение:
+4. Перейдите в `backend/`:
+```bash
+cd backend
+```
+
+5. Создайте виртуальное окружение:
 ```bash
 poetry shell
 ```
 
-5. Установите все зависимости:
+6. Установите все зависимости:
 ```bash
 poetry install
 ```
@@ -74,7 +79,7 @@ poetry install
 
 1. Перейдите в `infra/`:
 ```bash
-cd infra/
+cd ../infra/
 ```
 
 2. Запустите docker-compose:
