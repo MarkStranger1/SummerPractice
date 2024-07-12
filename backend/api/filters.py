@@ -10,6 +10,11 @@ from datetime import datetime
 from django_filters.rest_framework import FilterSet, filters
 from shop.models import Shop
 
+"""
+Определяем класс ShopFilter, который используется для фильтрации 
+объектов модели Shop с помощью библиотеки django-filter
+"""
+
 
 class ShopFilter(FilterSet):
     """
@@ -23,10 +28,16 @@ class ShopFilter(FilterSet):
                               lookup_expr='icontains')
     open = filters.NumberFilter(method='filter_open')
 
+    """
+    Определяем модель, к которой применяется фильтр
+    """
     class Meta:
         model = Shop
         fields = ['street', 'city', 'open']
 
+    """
+    Используем filter_open для фильтрации по статусу "открыт/закрыт"
+    """
     def filter_open(self, queryset, name, value):
         """Фильтрация по статусу (открыт/закрыт)."""
         current_time = datetime.now().time()

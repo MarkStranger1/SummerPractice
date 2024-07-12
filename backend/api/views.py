@@ -17,6 +17,17 @@ from .serializers import (CitySerializer, ShopReadSerializer,
                           ShopWriteSerializer, ShortStreetSerializer)
 
 
+"""
+Определяет CityViewSet, который предоставляет API для следующих операций:
+
+- `GET /cities/`: Перечислить все города
+- `GET /cities/<pk>/`: Получить информацию о конкретном городе по id
+- `GET /cities/<pk>/street/`: Получить список улиц, принадлежащих городу с указанным id
+
+CitySerializer и ShortStreetSerializer предоставляют сериализацию объектов City и Street соответственно
+"""
+
+
 class CityViewSet(mixins.ListModelMixin,
                   mixins.RetrieveModelMixin,
                   viewsets.GenericViewSet):
@@ -40,11 +51,18 @@ class ShopViewSet(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend,)
     filterset_class = ShopFilter
 
+    """
+    Определяем метод get_serializer_class в классе, который является классом ViewSet в Django REST Framework
+    """
     def get_serializer_class(self):
         if self.request.method == 'GET':
             return ShopReadSerializer
         return ShopWriteSerializer
 
+    """
+    Типичный пример функции create для представления REST API 
+    с использованием фреймворка Django REST Framework (DRF)
+    """
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)

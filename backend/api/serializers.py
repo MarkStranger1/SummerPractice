@@ -9,6 +9,11 @@
 from rest_framework import serializers
 from shop.models import City, Shop, Street
 
+"""
+Сериализатор, который преобразует данные модели City в формат JSON. 
+Он использует ModelSerializer для автоматического определения полей и настроек сериализации.
+"""
+
 
 class CitySerializer(serializers.ModelSerializer):
     """Преобразование данных модели City."""
@@ -21,6 +26,11 @@ class CitySerializer(serializers.ModelSerializer):
         )
 
 
+"""
+Сериализатор, который преобразует данные модели Street в JSON-формат, содержащий только поля id и name
+"""
+
+
 class ShortStreetSerializer(serializers.ModelSerializer):
     """Преобразование данных модели Short."""
 
@@ -30,6 +40,12 @@ class ShortStreetSerializer(serializers.ModelSerializer):
             "id",
             "name",
         )
+
+
+"""
+Сериализатор используется для записи данных в модель Shop, где значения поля city получаются из связанных моделей,
+а поле street представляет собой идентификатор объекта Street
+"""
 
 
 class ShopWriteSerializer(serializers.ModelSerializer):
@@ -51,6 +67,12 @@ class ShopWriteSerializer(serializers.ModelSerializer):
             "open_time",
             "close_time",
         )
+
+
+"""
+Сериализатор ShopReadSerializer, который используется для вывода данных модели Shop
+Автоматически создает поля сериализатора на основе модели Shop
+"""
 
 
 class ShopReadSerializer(serializers.ModelSerializer):
